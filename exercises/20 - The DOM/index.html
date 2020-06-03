@@ -10,21 +10,46 @@
 </head>
 
 <body>
+
+  <img class='nice cool' src="https://picsum.photos/600" />
   <div class="items">
     <div class="item">
-      <img src="https://picsum.photos/200" />
+      <img class src="https://picsum.photos/200" />
       <p>Hi I'm an item</p>
     </div>
 
     <div class="item2">
       <img src="https://picsum.photos/200" />
-      <h2> Sub Div </h2>
+      <h2>
+        I am a heading
+        <span>
+          I am hidden!
+        </span>
+      </h2>
       <p>Hi I'm an item</p>
     </div>
     <article class='item'>
       <h2>I'm an article</h2>
+      <p class='pizza'>This is how many pizzas i ate! 🍕 </p>
     </article>
   </div>
+
+  <style>
+    h2 span {
+      display: none;
+    }
+
+    img {
+      transition: all 0.2s;
+
+    }
+
+    .round {
+      border-radius: 50%;
+      transform: rotate(1turn) scale(2);
+      box-shadow: 0 0 10px teal;
+    }
+  </style>
 
   <script src="./the-dom.js"></script>
 </body>
