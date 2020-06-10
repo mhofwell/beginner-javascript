@@ -30,6 +30,7 @@
 // }
 
 // pageImg.addEventListener('click', toggleRound);
+// with HTML string, make a div, with two paragraphs inside of it
 
 const divOne = document.createElement(`div`);
 divOne.classList.add(`wrapper`);
@@ -70,10 +71,8 @@ const htmlFrag = `
 
 const myFragment = document.createRange().createContextualFragment(htmlFrag);
 
-const input = document.querySelector(`.wrapper`);
-input.insertAdjacentElement(`afterbegin`, myFragment);
+document.body.appendChild(myFragment);
 
-// with HTML string, make a div, with two paragraphs inside of it
 // put this div before the unordered list from above
 
 // add a class to the second paragraph called warning
