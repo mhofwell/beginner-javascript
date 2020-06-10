@@ -48,17 +48,17 @@ myDiv.firstElementChild.remove();
 
 // create a function called generatePlayerCard that takes in three arguments: name, age, and height
 function generatePlayerCard(name, age, height) {
-  const html = `
+        const html = `
     <div class="playerCard">
       <h2>${name} — ${age}</h2>
       <p>Their Height is ${height} and ${age} years old. In Dog years this person would be ${age *
-    7}. That would be a tall dog!
+                7}. That would be a tall dog!
         <button class="delete" type="button">&times; Delete</button>
     </p>
 
     </div>
   `;
-  return html;
+        return html;
 }
 
 // have that function return html that looks like this:
@@ -86,9 +86,9 @@ div.insertAdjacentElement('beforebegin', cards);
 const buttons = document.querySelectorAll('.delete');
 // make out delete function
 function deleteCard(event) {
-  const buttonThatGotClicked = event.currentTarget;
-  // buttonThatGotClicked.parentElement.remove();
-  buttonThatGotClicked.closest('.playerCard').remove();
+        const buttonThatGotClicked = event.currentTarget;
+        // buttonThatGotClicked.parentElement.remove();
+        buttonThatGotClicked.closest('.playerCard').remove();
 }
 // loop over them and attach a listener
 buttons.forEach(button => button.addEventListener('click', deleteCard));

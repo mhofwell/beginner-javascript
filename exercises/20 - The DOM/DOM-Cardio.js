@@ -31,6 +31,7 @@
 
 // pageImg.addEventListener('click', toggleRound);
 // with HTML string, make a div, with two paragraphs inside of it
+// put this div before the unordered list from above
 
 const divOne = document.createElement(`div`);
 divOne.classList.add(`wrapper`);
@@ -69,34 +70,79 @@ const htmlFrag = `
 </div>
 `;
 
-const myFragment = document.createRange().createContextualFragment(htmlFrag);
+// const myFragment = document.createRange().createContextualFragment(htmlFrag);
 
-document.body.appendChild(myFragment);
+const ulList = divOne.querySelector('ul');
+ulList.insertAdjacentHTML(`beforebegin`, htmlFrag);
 
-// put this div before the unordered list from above
+// extra, add a class to the div in HTMLFrag
+
+divOne.children[0].classList.add('myDiv');
 
 // add a class to the second paragraph called warning
+
+const myDiv1 = document.querySelector('.myDiv');
+myDiv1.children[1].classList.add('warning');
+
 // remove the first paragraph
 
-// create a function called generatePlayerCard that takes in three arguments: name, age, and height
+myDiv1.firstElementChild.remove();
 
+// create a function called generatePlayerCard that takes in three arguments: name, age, and height
 // have that function return html that looks like this:
 // <div class="playerCard">
 //   <h2>NAME — AGE</h2>
 //   <p>They are HEIGHT and AGE years old. In Dog years this person would be AGEINDOGYEARS. That would be a tall dog!</p>
 // </div>
 
+function generatePlayercard(name, age, height) {
+        const retHTML = `
+    <div class="playerCard">
+        <h2>${name} — ${age}</h2>
+            <p>They are ${height} and ${age} years old. In Dog years this person would be ${height *
+                age}. That would be a tall dog!
+                <button class="delete" type="button">&times; Delete</button>
+            </p>
+    </div>
+    `;
+        return retHTML;
+}
+
 // make a new div with a class of cards
+
+const divTwo = document.createElement(`div`);
+divTwo.classList.add('cards');
 
 // Have that function make 4 cards
 
+let pcards = generatePlayercard('mike', 1, 2);
+pcards += generatePlayercard('dom', 2, 3);
+pcards += generatePlayercard('jeff', 2, 3);
+pcards += generatePlayercard('birdie', 2, 3);
+
 // append those cards to the div
+
+divTwo.append(pcards);
+
 // put the div into the DOM just before the wrapper element
+
+divTwo.innerHTML = pcards;
+
+divOne.insertAdjacentElement('beforebegin', divTwo);
 
 // Bonus, put a delete Button on each card so when you click it, the whole card is removed
 
 // select all the buttons!
 
+const buttons = document.querySelector('.delete');
+
 // make out delete function
 
+function deleteCard(event) {
+        const clicked = event.currentTarget;
+        // clicked.parentElement.remove();
+        clicked.closest('.playerCard').remove();
+}
 // loop over them and attach a listener
+
+buttons.forEach(button => button.addEventListener('click', deleteCard));
