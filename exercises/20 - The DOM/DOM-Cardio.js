@@ -1,8 +1,3 @@
-// const divTwo = `<div class="wrapper"></div>`;
-// const myHTML = document.createRange().createContextualFragment(divTwo);
-
-// document.body.append(myHTML);
-
 // Make a div
 
 // add a class of wrapper to it
@@ -20,16 +15,6 @@
 // add a class of cute
 // add an alt of Cute Puppy
 // Append that image to the wrapper
-
-// divOne.insertAdjacentElement(`beforeend`, imgOne);
-
-// const pageImg = document.querySelector(`.wrapper img`);
-
-// function toggleRound() {
-//         pageImg.classList.toggle('round');
-// }
-
-// pageImg.addEventListener('click', toggleRound);
 // with HTML string, make a div, with two paragraphs inside of it
 // put this div before the unordered list from above
 
@@ -69,8 +54,6 @@ const htmlFrag = `
 <p></p>
 </div>
 `;
-
-// const myFragment = document.createRange().createContextualFragment(htmlFrag);
 
 const ulList = divOne.querySelector('ul');
 ulList.insertAdjacentHTML(`beforebegin`, htmlFrag);
@@ -134,7 +117,7 @@ divOne.insertAdjacentElement('beforebegin', divTwo);
 
 // select all the buttons!
 
-const buttons = document.querySelector('.delete');
+const buttons = document.querySelectorAll('.delete');
 
 // make out delete function
 
