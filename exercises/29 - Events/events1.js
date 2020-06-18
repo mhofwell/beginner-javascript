@@ -27,3 +27,5 @@ buyButtons.forEach(button => {
                 console.log(`you did it`);
         });
 });
+
+// Before the exercise switch in Events. ^^^
