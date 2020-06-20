@@ -94,6 +94,12 @@
       border-radius: 5px;
       min-height: 500px;
       background: white;
+      transform: translateY(-200%);
+      transition: transform 2s;
+    }
+
+    .modal-outer.open .modal-inner {
+      transform: translateY(0);
     }
   </style>
   <script src="./click-outside.js"></script>
