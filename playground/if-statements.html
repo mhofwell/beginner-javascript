@@ -19,6 +19,14 @@
         } else {
             console.log('nothing is true');
         }
+
+        function slugify(sentence, lowercase) {
+            let slug = sentence.replace(/\s/g, '-');
+            if (lowercase) {
+                slug = slug.toLowerCase();
+            }
+            return slug;
+        }
     </script>
 </body>
 
