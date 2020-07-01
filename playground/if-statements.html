@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../base.css">
     <title>Document</title>
 </head>
 
@@ -109,9 +110,42 @@
         // 3. do when false
         const word = count == 1 ? 'item' : 'items';
 
-        const sentence = `you have ${count} ${word} in your cart`;
-
+        const sentence = `you have ${count} item${count === 1 ? '' : 's'} in your cart`;
         console.log(sentence);
+
+        function showAdminBar() {
+            console.log('showing admin bar');
+        }
+        const isAdmin = true;
+        //  isAdmin ? showAdminBar() : null;
+
+        // AND AND TRICK!
+
+        function check1() {
+            console.log('running check 1');
+            return false;
+        }
+
+        function check2() {
+            console.log('running check 2');
+            return true;
+        }
+
+        function check3() {
+            console.log('running check 3');
+            return true;
+        }
+
+        if (check1() && check2() && check3()) {
+            console.log('all checks pass');
+        } else {
+            console.log('some failed');
+        }
+
+        // isAdmin ? showAdminBar() : null;
+        isAdmin && showAdminBar();
+
+        if (isAdmin) showAdminBar();
     </script>
 </body>
 
