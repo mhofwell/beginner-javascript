@@ -87,6 +87,31 @@
             }
             console.log('value is falsy');
         });
+        console.groupEnd();
+
+        console.clear();
+
+        const isCool = true;
+        if (!isCool) {
+            console.log('you are kewl');
+        }
+
+        // ternary
+        const count = 0;
+        // let word;
+        // if (count === 1) {
+        //     word = 'item';
+        // }
+        // word = 'items';
+
+        // 1. condition
+        // 2. do when true
+        // 3. do when false
+        const word = count == 1 ? 'item' : 'items';
+
+        const sentence = `you have ${count} ${word} in your cart`;
+
+        console.log(sentence);
     </script>
 </body>
 
