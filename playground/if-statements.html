@@ -8,6 +8,24 @@
 </head>
 
 <body>
+
+    <h2>Truthy Values</h2>
+    * 1
+    * -10
+    * full string
+    * a string of "0"
+    * empty array
+    * empty object
+
+    <h2>Falsy Values</h2>
+    * 0
+    * Variable set to null
+    * undefined variable
+    * a variable set to `"hello" - 10` NaN
+    * empty string
+
+
+
     <script>
         const age = 50;
         if (age > 70) {
@@ -35,9 +53,40 @@
             console.log('Cool name');
         }
 
-        if ('awesome'.includes('wes')) {
+        const isAwesomeName = 'awesome'.includes('wes');
+        if (isAwesomeName) {
             console.log('cool name bro');
         }
+
+        function nameIsAwesome(name) {
+            return 'awesome'.includes(name);
+        }
+
+        if (nameIsAwesome('wes')) {
+            console.log('COOOLNAMEwES');
+        }
+
+        const dog = '';
+        if (dog) {
+            console.log('you have a dog');
+        }
+        console.log('you dont');
+
+        const score = 0;
+        if (score) {
+            console.log('there is a score already');
+        }
+        console.log('no score yet');
+
+        const values = [[], {}, -10, 1, 0, 'full string', '', undefined, NaN, null];
+
+        console.group('truthy or falsy values ');
+        values.forEach(value => {
+            if (value) {
+                console.log('value');
+            }
+            console.log('value is falsy');
+        });
     </script>
 </body>
 
