@@ -10,18 +10,24 @@
 
 <body>
   <input type="text" name="first" value="mike">
-  <script>
+
+  <script src="https://unpkg.com/lodash"></script>
+  < <script>
     const age = 100;
     const person = {
-      name: 'wes',
-      'mike-is': 'cool',
-      '777': true,
-      'oh man': false,
-      age,
-      clothing: {
-        shirts: 10,
-        pants: 2,
-      },
+    name: 'wes',
+    'mike-is': 'cool',
+    '777': true,
+    'oh man': false,
+    age,
+    clothing: {
+    shirts: 10,
+    pants: 2,
+    },
+
+    sayHello(greeting = 'hey') {
+    return `${greeting} ${this.name}`;
+    },
     };
     person.job = 'mechanic';
 
@@ -30,12 +36,54 @@
     // console.log(person.age);
     // console.log(person[prompta]);
 
-    const nameInput = document.querySelector('[name="first"]');
-    const name = nameInput ? nameInput.value : '';
-    console.log(name);
+    // const nameInput = document.querySelector('[name="first"]');
+    // const name = nameInput ? nameInput.value : '';
+    // console.log(name);''
 
-    delete wes.job;
-  </script>
+    const person1 = {
+    age: 100,
+    clothing: {
+    shirts: 10,
+    pants: 2,
+    },
+    };
+
+    const person2 = {
+    age: 100,
+    };
+
+    // const person3 = person1;
+    // person3.first = 'Larry';
+    // console.log(person3.first);
+    // console.log(person1.first);
+
+    // const person3 = { ...person1 };
+    const person3 = _.cloneDeep(person1);
+
+    const meatInventory = {
+    bacon: 2,
+    sausage: 3,
+    };
+
+    const veggieInventory = {
+    lettuce: 5,
+    tomatoes: 3,
+    };
+
+    const inventory = { ...meatInventory, ...veggieInventory, oysters: 10, tomatoes: 3, lettuce: 3 };
+
+    function dostuff(data) {
+    data = 'something else';
+    console.log(data);
+    }
+
+    function dostuff2(data) {
+    data.tomatoes = 10000;
+    console.log(data);
+    }
+
+    dostuff2(inventory);
+    </script>
 </body>
 
 </html>
