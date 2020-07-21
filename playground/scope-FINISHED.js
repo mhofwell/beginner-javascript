@@ -24,7 +24,7 @@
 // }
 
 
-const dog = 'snickers';
+const dog = 'snickers'
 
 function logDog(dog) {
   console.log(dog);
