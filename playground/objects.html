@@ -9,6 +9,7 @@
 </head>
 
 <body>
+  <input type="text" name="first" value="mike">
   <script>
     const age = 100;
     const person = {
@@ -24,10 +25,16 @@
     };
     person.job = 'mechanic';
 
-    const prompta = prompt('what do you want to search for?');
+    // const prompta = prompt('what do you want to search for?');
 
-    console.log(person.age);
-    console.log(person[prompta]);
+    // console.log(person.age);
+    // console.log(person[prompta]);
+
+    const nameInput = document.querySelector('[name="first"]');
+    const name = nameInput ? nameInput.value : '';
+    console.log(name);
+
+    delete wes.job;
   </script>
 </body>
 
