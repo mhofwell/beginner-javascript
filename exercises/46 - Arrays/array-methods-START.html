@@ -59,16 +59,18 @@
 
     // Make a function that creates a range from x to y with Array.from();
 
-    const abc = function createRange(x, y) {
+    function createRange(x, y) {
       const newArray = Array.from({ length: y + 1 - x }, function indexRet(item, index) {
         return index + x;
       });
       return newArray;
-    };
+    }
+
+    const newRange = createRange(4, 10);
 
     // Check if the last array you created is really an array with Array.isArray();
 
-    const isArr = Array.isArray(abc);
+    const isArr = Array.isArray(newRange);
 
     // Take the meats object and make three arrays with Object.entries(), Object.keys, Object.values()
 
