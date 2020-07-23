@@ -78,11 +78,11 @@
     const keys = Object.keys(meats);
     const values = Object.values(meats);
 
-    // Object.entries(meats).forEach(entry => {
-    //   const key = entry[0];
-    //   const value = entry[1];
-    //   console.log(key, value);
-    // });
+    Object.entries(meats).forEach(entry => {
+      const key = entry[0];
+      const value = entry[1];
+      console.log(key, value);
+    });
 
     // Destructure above ^
 
@@ -91,7 +91,11 @@
       console.log(key, value);
     });
 
-// this is hard!
+    // or;
+
+    Object.entries(meats).forEach(([meat, qty]) => {
+      console.log(meat, qty);
+    });
 
     /*
       Instance Methods
@@ -99,7 +103,11 @@
 
     // Display all bun types with " or " - use join()
 
+    console.log(buns.join(' or '));
+
     // We have a string "hot dogs,hamburgers,sausages,corn" - use split() to turn it into a string
+
+    const string = 'hot dogs,hamburgers,sausages,corn';
 
     // take the last item off toppings with pop()
     // add it back with push()
