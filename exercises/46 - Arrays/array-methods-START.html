@@ -74,6 +74,23 @@
 
     // Take the meats object and make three arrays with Object.entries(), Object.keys, Object.values()
 
+    const entries = Object.entries(meats);
+    const keys = Object.keys(meats);
+    const values = Object.values(meats);
+
+    // Object.entries(meats).forEach(entry => {
+    //   const key = entry[0];
+    //   const value = entry[1];
+    //   console.log(key, value);
+    // });
+
+    // Destructure above ^
+
+    Object.entries(meats).forEach(entry => {
+      const [key, value] = entry;
+      console.log(key, value);
+    });
+
 // this is hard!
 
     /*
