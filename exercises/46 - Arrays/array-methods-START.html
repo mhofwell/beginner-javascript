@@ -109,19 +109,48 @@
 
     const string = 'hot dogs,hamburgers,sausages,corn';
 
+    const splitString = string.split(',');
+    console.log(splitString);
+
     // take the last item off toppings with pop()
+
+    function remLast() {
+      toppings.pop();
+      console.log(toppings);
+    }
+    remLast();
+
     // add it back with push()
+
+    toppings.push('cheese');
+    console.log(toppings);
+
     // take the first item off toppings with shift()
+
+    function remFirst() {
+      toppings.shift();
+      console.log(toppings);
+    }
+    remFirst();
+
     // add it back in with unshift()
+
+    toppings.unshift('Mushrooms');
+
     // Do the last four,but immutable (with spreads and new variables)
 
-    // Make a copy of the toppings array with slice()
-    // Make a copy of the toppings array with a spread
+    // 1 Make a copy of the toppings array with slice()
+
+    // 2 Make a copy of the toppings array with a spread
+
     // take out items 3 to 5 of your new toppings array with splice()
+
     // find the index of Avocado with indexOf() / lastIndexOf()
-    // Check if hot sauce is in the toppings with includes()
+
+    // 3Check if hot sauce is in the toppings with includes()
     // add it if it's not
-    // flip those toppings around with reverse()
+
+    // 4 flip those toppings around with reverse()
 
     /*
       Callback Methods
