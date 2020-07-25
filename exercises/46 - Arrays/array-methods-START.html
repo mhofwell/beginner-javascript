@@ -139,16 +139,40 @@
 
     // Do the last four,but immutable (with spreads and new variables)
 
+    const arrLength = toppings.length;
+
+    const top1 = [...toppings.slice(toppings.length - 4, toppings.length - 3)];
+    const top2 = [...toppings.slice(toppings.length - 3, toppings.length - 2)];
+    const top3 = [...toppings.slice(toppings.length - 2, toppings.length - 1)];
+    const top4 = [...toppings.slice(toppings.length - 1, toppings.length)];
+
     // 1 Make a copy of the toppings array with slice()
+
+    const copSlice = toppings.slice();
 
     // 2 Make a copy of the toppings array with a spread
 
+    const copSpread = [...toppings];
+
     // take out items 3 to 5 of your new toppings array with splice()
+
+    const newTopArr = copSpread.splice(3, 6);
 
     // find the index of Avocado with indexOf() / lastIndexOf()
 
+    const avoIndex = newTopArr.findIndex(fruit => fruit === 'Avocado');
+
     // 3Check if hot sauce is in the toppings with includes()
     // add it if it's not
+
+    function hotCheck() {
+      if (newTopArr.includes('hot sauce')) {
+        console.log('its there!');
+      } else newTopArr.push['hot sauce'];
+    }
+
+    hotCheck();
+    console.log(newTopArr);
 
     // 4 flip those toppings around with reverse()
 
