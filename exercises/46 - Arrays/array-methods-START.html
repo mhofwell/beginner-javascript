@@ -156,11 +156,12 @@
 
     // take out items 3 to 5 of your new toppings array with splice()
 
-    const newTopArr = copSpread.splice(3, 6);
+    const newTopArr = [...copSpread.splice(0, 3), ...copSpread.splice(6)];
 
     // find the index of Avocado with indexOf() / lastIndexOf()
 
-    const avoIndex = newTopArr.findIndex(fruit => fruit === 'Avocado');
+    const avoIndex = toppings.findIndex(fruit => fruit === 'Avocado');
+    console.log(avoIndex);
 
     // 3Check if hot sauce is in the toppings with includes()
     // add it if it's not
@@ -168,7 +169,9 @@
     function hotCheck() {
       if (newTopArr.includes('hot sauce')) {
         console.log('its there!');
-      } else newTopArr.push['hot sauce'];
+      } else {
+        newTopArr.push('hot sauce');
+      }
     }
 
     hotCheck();
