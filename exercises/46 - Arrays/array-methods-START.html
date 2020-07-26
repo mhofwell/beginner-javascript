@@ -187,13 +187,22 @@
 
     // find the first rating that talks about a burger with find()
 
-    const rating = feedback.find(burgReview => 'burg');
+    const rating = feedback.find(burgReview => burgReview.rating > 2);
 
     // find all ratings that are above 2 with filter()
 
-    const goodRatings = feedback.filter(feedback.)
+    const goodRatings = feedback.filter(reviews => reviews.rating > 2);
 
     // find all ratings that talk about a burger with filter()
+
+    function findBurg() {
+      for each item in the Array
+  search the comment key
+      find a match to burg
+      return the rating for that comment entry
+}
+
+    const burgReviews = feedback.filter(findBurg);
 
     // Remove the one star rating however you like!
 
