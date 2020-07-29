@@ -177,7 +177,7 @@
     // hotCheck();
     // console.log(newTopArr);
 
-    cosnt isInToppings = toppings.includes('Hot Sauce');
+    const isInToppings = toppings.includes('Hot Sauce');
     console.log(isInToppings);
 
     if (!isInToppings) {
@@ -185,10 +185,9 @@
     }
     console.log(toppings);
 
-
     // 4 flip those toppings around with reverse()
 
-    newTopArr.reverse();
+    toppings.reverse();
 
     /*
       Callback Methods
@@ -196,13 +195,44 @@
 
     // find the first rating that talks about a burger with find()
 
-    const rating = feedback.find(burgReview => burgReview.rating > 2);
+    // function findBurgRating(singleFeedback) {
+    //   return singleFeedback.comment.includes('burg');
+    // }
+
+    // const burgRating = feedback.find(findBurgRating);
+    // console.log(burgRating);
+
+    // const findBurgRating = function(singleFeedback) {
+    // return singleFeedback.comment.includes('burg');
+    //  }
+
+    function findByWord(word) {
+      return function (singleFeedback) {
+        return singleFeedback.comment.includes(word);
+      };
+    }
+
+    const burgRating = feedback.find(findByWord('burg'));
+    const smoothieRating = feedback.find(findByWord('smoothie'));
+
+    // const findBurgRating = (singleFeedback) =>  singleFeedback.comment.includes('burg');
+
+    // const rating = feedback.find(burgReview => burgReview.comment.includes('burg'));
+
+    // const util = {
+    //   findBurgRating(singleFeedback) {
+    //     return singleFeedback.comment.includes('burg');
+    //   },
+    // };
 
     // find all ratings that are above 2 with filter()
 
     const goodRatings = feedback.filter(reviews => reviews.rating > 2);
 
     // find all ratings that talk about a burger with filter()
+    const allBurgReviews = feedback.filter(burgReviews => burgReviews.comment.includes('burg'));
+
+    console.table(allBurgReviews);
 
     // Remove the one star rating however you like!
 
