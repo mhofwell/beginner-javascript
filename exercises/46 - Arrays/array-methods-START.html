@@ -160,22 +160,31 @@
 
     // find the index of Avocado with indexOf() / lastIndexOf()
 
-    const avoIndex = toppings.findIndex(fruit => fruit === 'Avocado');
+    const avoIndex = toppings.indexOf('Avocado');
     console.log(avoIndex);
 
     // 3Check if hot sauce is in the toppings with includes()
     // add it if it's not
 
-    function hotCheck() {
-      if (newTopArr.includes('hot sauce')) {
-        console.log('its there!');
-      } else {
-        newTopArr.push('hot sauce');
-      }
-    }
+    // function hotCheck() {
+    //   if (newTopArr.includes('hot sauce')) {
+    //     console.log('its there!');
+    //   } else {
+    //     newTopArr.push('hot sauce');
+    //   }
+    // }
 
-    hotCheck();
-    console.log(newTopArr);
+    // hotCheck();
+    // console.log(newTopArr);
+
+    cosnt isInToppings = toppings.includes('Hot Sauce');
+    console.log(isInToppings);
+
+    if (!isInToppings) {
+      toppings.push('Hot Sauce');
+    }
+    console.log(toppings);
+
 
     // 4 flip those toppings around with reverse()
 
@@ -194,15 +203,6 @@
     const goodRatings = feedback.filter(reviews => reviews.rating > 2);
 
     // find all ratings that talk about a burger with filter()
-
-    function findBurg() {
-      for each item in the Array
-  search the comment key
-      find a match to burg
-      return the rating for that comment entry
-}
-
-    const burgReviews = feedback.filter(findBurg);
 
     // Remove the one star rating however you like!
 
