@@ -236,15 +236,25 @@
 
     // Remove the one star rating however you like! I will!
 
-    const oneStar = feedback.filter(burgReviews => burgReviews.rating === 1);
+    // feedback.forEach(entry => {
+    //   if (entry.rating === 1) {
+    //     entry.rating = 0;
+    //   }
+    //   console.log('its okay!');
+    // });
 
-    function oneStarCheck() {
+    function deleteRating(rat) {
+      const oneIndex = feedback.findIndex(entry => entry.rating === rat);
+      return [...feedback.slice(0, oneIndex), ...feedback.slice(oneIndex + 1)];
+    }
 
-      if (feedback.ratings === 1)
-}
-
+    deleteRating();
 
     // check if there is at least 5 of one type of meat with some()
+
+    function lotsOfMeat() {
+      return meats.some(quantity => quantity > 5);
+    }
 
 // make sure we have at least 3 of every meat with every()
 
