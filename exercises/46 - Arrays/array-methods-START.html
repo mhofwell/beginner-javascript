@@ -250,19 +250,37 @@
 
     deleteRating();
 
+    const legitRatings = feedback.filter(single => single.rating !== 1);
+    console.table(legitRatings);
+
     // check if there is at least 5 of one type of meat with some()
 
-    function lotsOfMeat() {
-      return meats.some(quantity => quantity > 5);
-    }
+    const isEnough = Object.values(meats).some(meatValue => meatValue >= 5);
+    console.log(isEnough);
 
-// make sure we have at least 3 of every meat with every()
+    // make sure we have at least 3 of every meat with every()
+
+    const atLeastThree = Object.values(meats).every(meatValue => meatValue >= 3);
+    console.log(atLeastThree);
 
     // sort the toppings alphabetically with sort()
 
-// sort the order totals from most expensive to least with .sort()
+    const alphaTop = toppings.sort();
+    console.log(alphaTop);
+
+    // sort the order totals from most expensive to least with .sort()
+
+    function firstMinusSecond(a, b) {
+      return a - b;
+    }
+
+    const sortTotals = orderTotals.sort(firstMinusSecond);
+    console.log(sortTotals);
 
     // Sort the prices with sort()
+
+    const priceArray = Object.values(prices).sort(firstMinusSecond);
+    console.log(priceArray);
 
     /*
       Looping Methods (next)
