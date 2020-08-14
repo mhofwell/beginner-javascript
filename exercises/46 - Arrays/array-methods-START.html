@@ -13,42 +13,42 @@
 <body>
   <script>
     const toppings = [
-      'Mushrooms ',
-      'Tomatoes',
-      'Eggs',
-      'Chili',
-      'Lettuce',
-      'Avocado',
-      'Chiles',
-      'Bacon',
-      'Pickles',
-      'Onions',
-      'Cheese',
+            'Mushrooms ',
+            'Tomatoes',
+            'Eggs',
+            'Chili',
+            'Lettuce',
+            'Avocado',
+            'Chiles',
+            'Bacon',
+            'Pickles',
+            'Onions',
+            'Cheese',
     ];
 
     const buns = ['egg', 'wonder', 'brioche'];
 
     const meats = {
-      beyond: 10,
-      beef: 5,
-      pork: 7,
+            beyond: 10,
+            beef: 5,
+            pork: 7,
     };
 
     const prices = {
-      hotDog: 453,
-      burger: 765,
-      sausage: 634,
-      corn: 234,
+            hotDog: 453,
+            burger: 765,
+            sausage: 634,
+            corn: 234,
     };
 
     const orderTotals = [342, 1002, 523, 34, 634, 854, 1644, 2222];
 
     const feedback = [
-      { comment: 'Love the burgs', rating: 4 },
-      { comment: 'Horrible Service', rating: 2 },
-      { comment: 'Smoothies are great, liked the burger too', rating: 5 },
-      { comment: 'Ambiance needs work', rating: 3 },
-      { comment: 'I DONT LIKE BURGERS', rating: 1 },
+            { comment: 'Love the burgs', rating: 4 },
+            { comment: 'Horrible Service', rating: 2 },
+            { comment: 'Smoothies are great, liked the burger too', rating: 5 },
+            { comment: 'Ambiance needs work', rating: 3 },
+            { comment: 'I DONT LIKE BURGERS', rating: 1 },
     ];
 
     /*
@@ -60,10 +60,10 @@
     // Make a function that creates a range from x to y with Array.from();
 
     function createRange(x, y) {
-      const newArray = Array.from({ length: y + 1 - x }, function indexRet(item, index) {
-        return index + x;
-      });
-      return newArray;
+            const newArray = Array.from({ length: y + 1 - x }, function indexRet(item, index) {
+                    return index + x;
+            });
+            return newArray;
     }
 
     const newRange = createRange(4, 10);
@@ -79,22 +79,22 @@
     const values = Object.values(meats);
 
     Object.entries(meats).forEach(entry => {
-      const key = entry[0];
-      const value = entry[1];
-      console.log(key, value);
+            const key = entry[0];
+            const value = entry[1];
+            console.log(key, value);
     });
 
     // Destructure above ^
 
     Object.entries(meats).forEach(entry => {
-      const [key, value] = entry;
-      console.log(key, value);
+            const [key, value] = entry;
+            console.log(key, value);
     });
 
     // or;
 
     Object.entries(meats).forEach(([meat, qty]) => {
-      console.log(meat, qty);
+            console.log(meat, qty);
     });
 
     /*
@@ -115,8 +115,8 @@
     // take the last item off toppings with pop()
 
     function remLast() {
-      toppings.pop();
-      console.log(toppings);
+            toppings.pop();
+            console.log(toppings);
     }
     remLast();
 
@@ -128,8 +128,8 @@
     // take the first item off toppings with shift()
 
     function remFirst() {
-      toppings.shift();
-      console.log(toppings);
+            toppings.shift();
+            console.log(toppings);
     }
     remFirst();
 
@@ -181,7 +181,7 @@
     console.log(isInToppings);
 
     if (!isInToppings) {
-      toppings.push('Hot Sauce');
+            toppings.push('Hot Sauce');
     }
     console.log(toppings);
 
@@ -207,9 +207,9 @@
     //  }
 
     function findByWord(word) {
-      return function (singleFeedback) {
-        return singleFeedback.comment.includes(word);
-      };
+            return function(singleFeedback) {
+                    return singleFeedback.comment.includes(word);
+            };
     }
 
     const burgRating = feedback.find(findByWord('burg'));
@@ -244,8 +244,8 @@
     // });
 
     function deleteRating(rat) {
-      const oneIndex = feedback.findIndex(entry => entry.rating === rat);
-      return [...feedback.slice(0, oneIndex), ...feedback.slice(oneIndex + 1)];
+            const oneIndex = feedback.findIndex(entry => entry.rating === rat);
+            return [...feedback.slice(0, oneIndex), ...feedback.slice(oneIndex + 1)];
     }
 
     deleteRating();
@@ -271,7 +271,7 @@
     // sort the order totals from most expensive to least with .sort()
 
     function firstMinusSecond(a, b) {
-      return a - b;
+            return a - b;
     }
 
     const sortTotals = orderTotals.sort(firstMinusSecond);
@@ -279,8 +279,13 @@
 
     // Sort the prices with sort()
 
-    const priceArray = Object.values(prices).sort(firstMinusSecond);
-    console.log(priceArray);
+    const productsSortedByPrice = Object.entries(prices).sort(function(a, b) {
+            const aPrice = a[1];
+            const bPrice = b[1];
+            return bPrice - aPrice;
+    });
+
+    console.table(Object.fromEntries(productsSortedByPrice));
 
     /*
       Looping Methods (next)
