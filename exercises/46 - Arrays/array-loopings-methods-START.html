@@ -12,7 +12,19 @@
 
 <body>
   <script>
-    const toppings = ['Mushrooms ', 'Tomatoes', 'Eggs', 'Chili', 'Lettuce', 'Avocado', 'Chiles', 'Bacon', 'Pickles', 'Onions', 'Cheese'];
+    const toppings = [
+      'Mushrooms ',
+      'Tomatoes',
+      'Eggs',
+      'Chili',
+      'Lettuce',
+      'Avocado',
+      'Chiles',
+      'Bacon',
+      'Pickles',
+      'Onions',
+      'Cheese',
+    ];
 
     const students = [
       {
@@ -67,32 +79,31 @@
         birthday: 'April 22, 1993',
         names: {
           first: 'Keith',
-          last: 'Buckley'
-        }
+          last: 'Buckley',
+        },
       },
       {
         birthday: 'January 3, 1975',
         names: {
           first: 'Larry',
-          last: 'Heep'
-        }
+          last: 'Heep',
+        },
       },
       {
         birthday: 'February 12, 1944',
         names: {
           first: 'Linda',
-          last: 'Bermeer'
-        }
-      }
+          last: 'Bermeer',
+        },
+      },
     ];
-
 
     const buns = ['egg', 'wonder', 'brioche'];
 
     const meats = {
       beyond: 10,
       beef: 5,
-      pork: 7
+      pork: 7,
     };
 
     const prices = {
@@ -124,11 +135,43 @@
       { type: 'pants', price: 123 },
     ];
 
-
     /*
       Looping Methods
     */
 
+    // My Version
+    // function logTopping(topping, index, originalArray) {
+    //   console.log(topping);
+    //   const next = index + 1;
+    //   const prev = index - 1;
+    //   if (next < originalArray.length) {
+    //     console.log(originalArray[next]);
+    //   }
+    //   if (prev >= 0) {
+    //     console.log(originalArray[prev]);
+    //   }
+    //   if (originalArray.length === next) {
+    //     console.log('bye!');
+    //   }
+    // }
+
+    // toppings.forEach(logTopping);
+
+    // Wes' Version
+
+    function logTopping(topping, index, originalArray) {
+      const nextTopping = originalArray[index + 1];
+      const prevTopping = originalArray[index - 1];
+      console.log(topping);
+      nextTopping ? console.log(nextTopping) : null;
+      prevTopping ? console.log(prevTopping) : null;
+      index === originalArray.length - 1 ? console.log('bye') : null;
+    }
+
+    toppings.forEach(logTopping);
+
+// Big 3
+// Map, Filter, Reduce
   </script>
 </body>
 
