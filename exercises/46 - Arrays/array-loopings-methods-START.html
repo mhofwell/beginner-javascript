@@ -170,8 +170,74 @@
 
     toppings.forEach(logTopping);
 
-// Big 3
-// Map, Filter, Reduce
+    // Big 3
+    // Map, Filter, Reduce, Fill
+
+    console.clear();
+
+    function addArms(face) {
+      return `✋ ${face} ✋  `;
+    }
+
+    const toys = faces.map(addArms);
+    console.log(toys);
+
+    const myFamily = ['mike', 'dom', 'woody'];
+
+    function hofIfy(name) {
+      return `${name} Hof`;
+    }
+
+    function capitalize(word) {
+      return `${word[0].toUpperCase()}${word.slice(1)}`;
+    }
+
+    // const fullNames = ['mike', 'dom', 'woody'].map(name => `${name} hof`);
+
+    const fullNames = myFamily.map(capitalize).map(hofIfy);
+    console.log(fullNames);
+
+    const orderTotalsTip = orderTotals.map(totals => totals * 1.13);
+    console.log(orderTotalsTip);
+
+    // Silly Thing
+
+    //   function attachBody(face, body) {
+    //     return `
+    // ${face}
+    // ${body.repeat(3)}
+    // ${Array(3)
+    //         .fill(body)
+    //         .join(' ')}
+    // 🤞 ${body.repeat(2)} 🤙
+    // ${Array(2)
+    //         .fill(body)
+    //         .join('  ')}
+    // ${Array(2)
+    //         .fill(body)
+    //         .join('  ')}
+    // 🦵   🦵
+    // `;
+    //   }
+
+    //   faces.map(face => attachBody(face, '🍤')).forEach(body => console.log(body));
+
+    const cleanPeople = people.map(function (person) {
+      // timestamp
+      const birthday = new Date(person.birthday).getTime();
+      // now timestamp
+      const now = Date.now();
+      const age = Math.floor((now - birthday) / 31536000000);
+      // get their birthday
+      // figure out how old they are
+      console.log(age);
+      // return their full name and bday in an object.
+      return {
+        age,
+        name: `${person.names.first} ${person.names.last}`,
+      };
+    });
+    console.table(cleanPeople);
   </script>
 </body>
 
