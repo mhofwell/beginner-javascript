@@ -237,7 +237,31 @@
         name: `${person.names.first} ${person.names.last}`,
       };
     });
+
     console.table(cleanPeople);
+
+    // Filter
+
+    const over40 = cleanPeople.filter(person => person.age > 40);
+    console.log(over40);
+
+    // Find
+    function findById(id) {
+      function isStudent(student) {
+        return student.id === id;
+      }
+    }
+
+    function findByProp(prop, propLookingFor) {
+      return function isStudent(student) {
+        return student[prop] === propLookingFor;
+      };
+    }
+
+    const student = students.find(findByProp('id', '565a'));
+    const student2 = students.find(findByProp('first_name', 'Micki'));
+    console.log(student2);
+    console.log(student);
   </script>
 </body>
 
