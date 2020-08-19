@@ -270,9 +270,33 @@
       console.log(`the current tally is ${tally}`);
       console.log(`the current total is ${currentTotal}`);
       console.log('-----');
+      // return the current tally + the amount of this order
+      return tally + currentTotal;
     }
 
-    const allOrders = orderTotals.reduce(tallyNumbers);
+    const allOrders = orderTotals.reduce(tallyNumbers, 0);
+
+    console.log(allOrders);
+
+    // from inventory array, how many of each instance (shirt, pants, socks) and what is the total value????
+
+    // TIP: you need to create and return an object, so set the accumulator to an empty object
+
+    function inventoryReducer(totals, item) {
+      console.log(`looping over ${item.type}`);
+      // increment type by 1
+      // checking if the shirt property exists beefore adding to it!
+      totals[item.type] = totals[item.type] + 1 || 1;
+
+      // return the totals so the next loop can use it.
+      return totals;
+    }
+
+    const inventoryCounts = inventory.reduce(inventoryReducer, {});
+    console.log(inventoryCounts);
+
+    const totalInventoryPrice = inventory.reduce((acc, item) => acc + item.price, 0);
+    console.log(totalInventoryPrice);
   </script>
 </body>
 
