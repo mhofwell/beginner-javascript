@@ -9,11 +9,375 @@
 </head>
 
 <body>
+
+  <p>
+
+  </p>
+
   <script>
     // Grab all the text from a web page
+
     // Count how many times each letter and number occurs
 
+    const abc = `Skip to main content
+    Select language
+    Skip to search
+    Technologies
+    References & Guides
+    Feedback
+    Search MDN
+    Search MDN
+    Sign in
+    Array.prototype.forEach()
+    See Web technology for developersSee JavaScriptSee JavaScript referenceSee Standard built-in objectsSee
+    ArrayArray.prototype.forEach()
+    English
+    ▼
+    Jump to section
+    The forEach() method executes a provided function once for each array element.
 
+
+    Syntax
+    arr.forEach(callback(currentValue [, index [, array]])[, thisArg])
+    Parameters
+    callback
+    Function to execute on each element. It accepts between one and three arguments:
+    currentValue
+    The current element being processed in the array.
+    index Optional
+    The index currentValue in the array.
+    array Optional
+    The array forEach() was called upon.
+    thisArg Optional
+    Value to use as this when executing callback.
+    Return value
+    undefined.
+
+    Description
+    forEach() calls a provided callback function once for each element in an array in ascending order. It is not invoked
+    for index properties that have been deleted or are uninitialized. (For sparse arrays, see example below.)
+
+    callback is invoked with three arguments:
+
+    the value of the element
+    the index of the element
+    the Array object being traversed
+    If a thisArg parameter is provided to forEach(), it will be used as callback's this value. The thisArg value
+    ultimately observable by callback is determined according to the usual rules for determining the this seen by a
+    function.
+
+    The range of elements processed by forEach() is set before the first invocation of callback. Elements which are
+    appended to the array after the call to forEach() begins will not be visited by callback. If existing elements of
+    the array are changed or deleted, their value as passed to callback will be the value at the time forEach() visits
+    them; elements that are deleted before being visited are not visited. If elements that are already visited are
+    removed (e.g. using shift()) during the iteration, later elements will be skipped. (See this example, below.)
+
+    forEach() executes the callback function once for each array element; unlike map() or reduce() it always returns the
+    value undefined and is not chainable. The typical use case is to execute side effects at the end of a chain.
+
+    forEach() does not mutate the array on which it is called. (However, callback may do so)
+
+    There is no way to stop or break a forEach() loop other than by throwing an exception. If you need such behavior,
+    the forEach() method is the wrong tool.
+
+    Early termination may be accomplished with:
+
+    A simple for loop
+    A for...of / for...in loops
+    Array.prototype.every()
+    Array.prototype.some()
+    Array.prototype.find()
+    Array.prototype.findIndex()
+    Array methods: every(), some(), find(), and findIndex() test the array elements with a predicate returning a truthy
+    value to determine if further iteration is required.
+
+    forEach expects a synchronous function
+    forEach does not wait for promises. Kindly make sure you are aware of the implications while using promises(or async
+    functions) as forEach callback. Example Code
+    let ratings = [5, 4, 5];
+    let sum = 0;
+
+    let sumFunction = async function (a, b)
+    {
+    return a + b
+    }
+
+    ratings.forEach(async function(rating) {
+    sum = await sumFunction(sum, rating)
+    })
+
+    console.log(sum)
+    // Naively expected output: 14
+    // Actual output: 0
+    Examples
+    No operation for uninitialized values (sparse arrays)
+    const arraySparse = [1,3,,7]
+    let numCallbackRuns = 0
+
+    arraySparse.forEach((element) => {
+    console.log(element)
+    numCallbackRuns++
+    })
+
+    console.log("numCallbackRuns: ", numCallbackRuns)
+
+    // 1
+    // 3
+    // 7
+    // numCallbackRuns: 3
+    // comment: as you can see the missing value between 3 and 7 didn't invoke callback function.
+    Converting a for loop to forEach
+    const items = ['item1', 'item2', 'item3']
+    const copyItems = []
+
+    // before
+    for (let i = 0; i < items.length; i++) { copyItems.push(items[i]) } // after items.forEach(function(item){
+      copyItems.push(item) }) Printing the contents of an array Note: In order to display the content of an array in the
+      console, you can use console.table(), which prints a formatted version of the array. The following example
+      illustrates an alternative approach, using forEach(). The following code logs a line for each element in an array:
+      function logArrayElements(element, index, array) { console.log('a[' + index + '] = ' + element) } // Notice that
+      index 2 is skipped, since there is no item at // that position in the array... [2, 5, ,
+      9].forEach(logArrayElements) // logs: // a[0]=2 // a[1]=5 // a[3]=9 Using thisArg The following (contrived)
+      example updates an object's properties from each entry in the array: function Counter() { this.sum=0 this.count=0
+      } Counter.prototype.add=function(array) { array.forEach((entry)=> {
+      this.sum += entry
+      ++this.count
+      }, this)
+      // ^---- Note
+      }
+
+      const obj = new Counter()
+      obj.add([2, 5, 9])
+      obj.count
+      // 3
+      obj.sum
+      // 16
+      Since the thisArg parameter (this) is provided to forEach(), it is passed to callback each time it's invoked. The
+      callback uses it as its this value.
+
+      Note: If passing the callback function uses an arrow function expression, the thisArg parameter can be omitted,
+      since all arrow functions lexically bind the this value.
+
+      An object copy function
+      The following code creates a copy of a given object.
+
+      There are different ways to create a copy of an object. The following is just one way and is presented to explain
+      how Array.prototype.forEach() works by using ECMAScript 5 Object.* meta property functions.
+
+      function copy(obj) {
+      const copy = Object.create(Object.getPrototypeOf(obj))
+      const propNames = Object.getOwnPropertyNames(obj)
+
+      propNames.forEach((name) => {
+      const desc = Object.getOwnPropertyDescriptor(obj, name)
+      Object.defineProperty(copy, name, desc)
+      })
+
+      return copy
+      }
+
+      const obj1 = { a: 1, b: 2 }
+      const obj2 = copy(obj1) // obj2 looks like obj1 now
+      Modifying the array during iteration
+      The following example logs one, two, four.
+
+      When the entry containing the value two is reached, the first entry of the whole array is shifted off—resulting in
+      all remaining entries moving up one position. Because element four is now at an earlier position in the array,
+      three will be skipped.
+
+      forEach() does not make a copy of the array before iterating.
+
+      let words = ['one', 'two', 'three', 'four']
+      words.forEach((word) => {
+      console.log(word)
+      if (word === 'two') {
+      words.shift() //'one' will delete from array
+      }
+      }) // one // two ​​​​// four
+
+      console.log(words); //['two', 'three',​​​​ 'four']
+
+      Flatten an array
+      The following example is only here for learning purpose. If you want to flatten an array using built-in methods
+      you can use Array.prototype.flat().
+
+      function flatten(arr) {
+      const result = []
+
+      arr.forEach((i) => {
+      if (Array.isArray(i)) {
+      result.push(...flatten(i))
+      } else {
+      result.push(i)
+      }
+      })
+
+      return result
+      }
+
+      // Usage
+      const nested = [1, 2, 3, [4, 5, [6, 7], 8, 9]]
+
+      flatten(nested) // [1, 2, 3, 4, 5, 6, 7, 8, 9]
+      Specifications
+      Specification
+      ECMAScript (ECMA-262)
+      The definition of 'Array.prototype.forEach' in that specification.
+      Browser compatibility
+      Update compatibility data on GitHub
+      Desktop
+      Mobile
+      Server
+      Chrome
+      Edge
+      Firefox
+      Internet Explorer
+      Opera
+      Safari
+      Android webview
+      Chrome for Android
+      Firefox for Android
+      Opera for Android
+      Safari on iOS
+      Samsung Internet
+      Node.js
+      forEach
+      Full support1
+      Full support12
+      Full support1.5
+      Full support9
+      Full support9.5
+      Full support3
+      Full support≤37
+      Full support18
+      Full support4
+      Full support10.1
+      Full support1
+      Full support1.0
+      Full support0.1.100
+      What are we missing?
+      Legend
+      Full support
+      Full support
+      See also
+      Array.prototype.find()
+      Array.prototype.findIndex()
+      Array.prototype.map()
+      Array.prototype.filter()
+      Array.prototype.every()
+      Array.prototype.some()
+      Map.prototype.forEach()
+      Set.prototype.forEach()
+      Metadata
+      Last modified: Jul 28, 2020, by MDN contributors
+      Related Topics
+      Standard built-in objects
+      Array
+      Properties
+      Array.prototype.length
+      Array.prototype[@@unscopables]
+      Methods
+      Array.from()
+      Array.isArray()
+      Array.of()
+      Array.prototype.concat()
+      Array.prototype.copyWithin()
+      Array.prototype.entries()
+      Array.prototype.every()
+      Array.prototype.fill()
+      Array.prototype.filter()
+      Array.prototype.find()
+      Array.prototype.findIndex()
+      Array.prototype.flat()
+      Array.prototype.flatMap()
+      Array.prototype.forEach()
+      Array.prototype.includes()
+      Array.prototype.indexOf()
+      Array.prototype.join()
+      Array.prototype.keys()
+      Array.prototype.lastIndexOf()
+      Array.prototype.map()
+      Array.prototype.pop()
+      Array.prototype.push()
+      Array.prototype.reduce()
+      Array.prototype.reduceRight()
+      Array.prototype.reverse()
+      Array.prototype.shift()
+      Array.prototype.slice()
+      Array.prototype.some()
+      Array.prototype.sort()
+      Array.prototype.splice()
+      Array.prototype.toLocaleString()
+      Array.prototype.toSource()
+      Array.prototype.toString()
+      Array.prototype.unshift()
+      Array.prototype.values()
+      Array.prototype[@@iterator]()
+      get Array[@@species]
+      Inheritance:
+      Function
+      Properties
+      Function.arguments
+      Function.caller
+      Function.displayName
+      Function.length
+      Function.name
+      Methods
+      Function.prototype.apply()
+      Function.prototype.bind()
+      Function.prototype.call()
+      Function.prototype.toSource()
+      Function.prototype.toString()
+      Object
+      Properties
+      Object.prototype.__proto__
+      Object.prototype.constructor
+      Methods
+      Object.prototype.__defineGetter__()
+      Object.prototype.__defineSetter__()
+      Object.prototype.__lookupGetter__()
+      Object.prototype.__lookupSetter__()
+      Object.prototype.hasOwnProperty()
+      Object.prototype.isPrototypeOf()
+      Object.prototype.propertyIsEnumerable()
+      Object.prototype.toLocaleString()
+      Object.prototype.toSource()
+      Object.prototype.toString()
+      Object.prototype.valueOf()
+      Object.setPrototypeOf()
+      Learn the best of web development
+      Get the latest and greatest from MDN delivered straight to your inbox.
+
+
+      E-mail
+      you@example.com
+      Sign up now
+      Hide Newsletter Sign-up
+      MDN Web Docs
+      Web Technologies
+      Learn Web Development
+      About MDN
+      Feedback
+      About
+      MDN Web Docs Store
+      Contact Us
+      Firefox
+      MDN
+      Mozilla
+      © 2005-2020 Mozilla and individual contributors. Content is available under these licenses.
+
+      Terms
+      Privacy
+      Cookies`;
+
+    const array = [...abc];
+
+    function makeSmall(word) {
+      return `${word[0].toLowerCase()}${word.slice(1)}`;
+    }
+
+    const lowerCase = array.map(makeSmall);
+    console.log(lowerCase);
   </script>
 </body>
 
