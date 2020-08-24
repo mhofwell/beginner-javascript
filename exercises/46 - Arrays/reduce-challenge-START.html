@@ -370,15 +370,23 @@
       Privacy
       Cookies`;
 
-    const array = [...abc];
+    const text = [...abc];
 
     function makeSmall(word) {
       return `${word[0].toLowerCase()}${word.slice(1)}`;
     }
 
-    const lowerCase = array.map(makeSmall);
-    console.log(lowerCase);
+    const lowerCaseText = text.map(makeSmall);
+    console.log(lowerCaseText);
+
+    // const result = lowerCaseText.filter(char => {
+    //   if (char.match(/[a-z0-9]/i)) {
+    //     return true;
+    //   }
+    //   return false;
+    // });
   </script>
+
 </body>
 
 </html>
