@@ -14,13 +14,71 @@
 
     const name = 'Wes Bos';
 
-    // For
+    const wes = {
+      name: 'wes',
+      age: 90,
+    };
+
+    // For (increment loop)
+
+    for (let i = 0; i <= 10; i++) {
+      console.log(i);
+    }
+
+    for (let i = 0; i < numbers.length; i++) {
+      console.log(numbers[i]);
+    }
 
     // For of
 
-    // For in
+    for (const letter of name) {
+      console.log(letter);
+    }
 
-    // While Loop
+    for (const number of numbers) {
+      console.log(number);
+    }
+
+    // For in - used for looping over keys of an object
+
+    for (const prop in wes) {
+      console.log(prop);
+    }
+
+    const baseHumanStats = {
+      feet: 2,
+      arms: 2,
+      eyes: 2,
+      head: 1,
+    };
+
+    function Human(name) {
+      this.name = name;
+    }
+
+    Human.prototype = baseHumanStats;
+
+    const wes2 = new Human('wes';)
+
+    console.log(Object.entries(wes2))
+
+    for (const prop in wes2) {
+      console.log(prop);
+    }
+
+    // while loop
+
+    let cool = true;
+    let i = 1;
+    while (cool === true) {
+      console.log('You Are Cool')
+      i++;
+      if (i > 100) {
+        cool = false;
+      }
+    }
+
+
   </script>
 </body>
 

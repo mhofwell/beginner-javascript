@@ -19,7 +19,7 @@
 
     // Count how many times each letter and number occurs
 
-    const abc = `Skip to main content
+    const page = `Skip to main content
     Select language
     Skip to search
     Technologies
@@ -370,21 +370,28 @@
       Privacy
       Cookies`;
 
-    const text = [...abc];
+    // put every individual item of the string into a slot in an array.
 
-    function makeSmall(word) {
-      return `${word[0].toLowerCase()}${word.slice(1)}`;
+    const text = page.split('');
+
+    function isValidChar(char) {
+      return char.match(/[a-z0-9]/i);
     }
 
-    const lowerCaseText = text.map(makeSmall);
-    console.log(lowerCaseText);
+    function lowercase(char) {
+      return char.toLowerCase();
+    }
 
-    // const result = lowerCaseText.filter(char => {
-    //   if (char.match(/[a-z0-9]/i)) {
-    //     return true;
-    //   }
-    //   return false;
-    // });
+    function instanceCounter(counts, char) {
+      counts[char] ? (counts[char] = counts[char] + 1) : (counts[char] = 1);
+      return counts;
+    }
+
+    const result = page
+      .split('')
+      .filter(isValidChar)
+      .map(lowercase)
+      .reduce(instanceCounter, {});
   </script>
 
 </body>
