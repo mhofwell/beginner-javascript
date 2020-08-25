@@ -372,8 +372,6 @@
 
     // put every individual item of the string into a slot in an array.
 
-    const text = page.split('');
-
     function isValidChar(char) {
       return char.match(/[a-z0-9]/i);
     }
@@ -383,7 +381,7 @@
     }
 
     function instanceCounter(counts, char) {
-      counts[char] ? (counts[char] = counts[char] + 1) : (counts[char] = 1);
+      counts[char] ? (counts[char] = counts[char]++) : (counts[char] = 1);
       return counts;
     }
 
