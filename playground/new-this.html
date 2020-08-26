@@ -10,6 +10,9 @@
 </head>
 
 <body>
+  <button class="one"> Button 1</button>
+  <button class="two"> Button 2</button>
+
   <script>
     const myDate = new Date('august 11, 2025');
     console.dir(myDate);
@@ -19,28 +22,37 @@
 
     const span = document.createElement('span');
 
-    function Pizza() {
+    function Pizza(toppings = [], customer) {
       console.log('making a pizza');
+      // save the toppings that were passed in, to this instance of pizza
+      this.toppings = toppings;
+      this.customer = customer;
+      this.id = Math.floor(Math.random() * 16777215).toString(16);
     }
 
-    const pepperoniPizza = new Pizza();
+    const pepperoniPizza = new Pizza(['pepperoni'], 'Wes Bos');
+    const canadianPizza = new Pizza(['pepperoni', 'ham'], 'Wes Bos');
+
     console.log(pepperoniPizza);
     console.log(pepperoniPizza.constructor);
     console.log(pepperoniPizza instanceof Pizza);
 
+    function tellMeAboutTheButton() {
+      console.log(this);
+    }
     const button1 = document.querySelector('.one');
     const button2 = document.querySelector('.two');
 
-    function tellMeAboutTheButton() {
-      console.log('outside', this);
-      setTimeout(() => {
-        console.log('inside', this);
-        this.textContent = 'you clicked me';
-      }, 1000);
-    }
+    // function tellMeAboutTheButton() {
+    //   console.log('outside', this);
+    //   setTimeout(() => {
+    //     console.log('inside', this);
+    //     this.textContent = 'you clicked me'
+    //   }, 1000)
+    // }
 
-    button1.addEventListener('click', tellMeAboutTheButton);
-    button2.addEventListener('click', tellMeAboutTheButton);
+    // button1.addEventListener('click', tellMeAboutTheButton);
+    // button2.addEventListener('click', tellMeAboutTheButton);
   </script>
 
 </body>
