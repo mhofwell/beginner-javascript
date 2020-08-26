@@ -2,13 +2,46 @@
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>New, This, Prototypes and Classes</title>
-  <link rel="stylesheet" href="../base.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New, This, Prototypes, Classes</title>
+
 </head>
 
 <body>
+  <script>
+    const myDate = new Date('august 11, 2025');
+    console.dir(myDate);
+    console.log(myDate.getFullYear());
+
+    const names = ['wes', 'kait'];
+
+    const span = document.createElement('span');
+
+    function Pizza() {
+      console.log('making a pizza');
+    }
+
+    const pepperoniPizza = new Pizza();
+    console.log(pepperoniPizza);
+    console.log(pepperoniPizza.constructor);
+    console.log(pepperoniPizza instanceof Pizza);
+
+    const button1 = document.querySelector('.one');
+    const button2 = document.querySelector('.two');
+
+    function tellMeAboutTheButton() {
+      console.log('outside', this);
+      setTimeout(() => {
+        console.log('inside', this);
+        this.textContent = 'you clicked me';
+      }, 1000);
+    }
+
+    button1.addEventListener('click', tellMeAboutTheButton);
+    button2.addEventListener('click', tellMeAboutTheButton);
+  </script>
 
 </body>
 
