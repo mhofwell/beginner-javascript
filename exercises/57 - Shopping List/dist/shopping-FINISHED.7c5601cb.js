@@ -117,7 +117,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"shopping.js":[function(require,module,exports) {
+})({"shopping-FINISHED.js":[function(require,module,exports) {
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -131,29 +131,26 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 var shoppingForm = document.querySelector('.shopping');
-var list = document.querySelector('.list'); // We need an array to hold all of our items state.
+var list = document.querySelector('.list'); // We need an array to hold our state
 
-var items = []; // so we make a submit handler
+var items = [];
 
 function handleSubmit(e) {
   e.preventDefault();
-  console.log('submitted!');
-  var name = e.currentTarget.item.value;
+  console.log('submitted!!');
+  var name = e.currentTarget.item.value; // if its empty, then dont submit it
 
-  if (!name) {
-    return;
-  }
-
+  if (!name) return;
   var item = {
     name: name,
     id: Date.now(),
     complete: false
-  }; // push the items into our state
+  }; // Push the items into our state
 
   items.push(item);
-  console.log("There are now ".concat(items.length, " in your state")); // clear the form
+  console.log("There are now ".concat(items.length, " in your state")); // Clear the form
 
-  e.target.reset(); // fire off a custom event that will tell anyone else who cares that the items have been updated.
+  e.target.reset(); // fire off a custom event that will tell anyone else who cares that the items have been updated!
 
   list.dispatchEvent(new CustomEvent('itemsUpdated'));
 }
@@ -161,18 +158,18 @@ function handleSubmit(e) {
 function displayItems() {
   console.log(items);
   var html = items.map(function (item) {
-    return "<li class =\"shopping-item\">\n                        <input value= \"".concat(item.id, "\" \n                        type=\"checkbox\"\n                        ").concat(item.complete ? 'checked' : '', "\n                        <span class =\"itemName\">").concat(item.name, "</span> \n                        <button aria-label=\"Remove ").concat(item.name, "\"\n                        value = \"").concat(item.id, "\">\n                        &times</button> \n        </li>");
+    return "<li class=\"shopping-item\">\n      <input\n        value=\"".concat(item.id, "\"\n        type=\"checkbox\"\n        ").concat(item.complete && 'checked', "\n      >\n      <span class=\"itemName\">").concat(item.name, "</span>\n      <button\n        aria-label=\"Remove ").concat(item.name, "\"\n        value=\"").concat(item.id, "\"\n      >&times;</buttonaria-label=\"Remove>\n  </li>");
   }).join('');
   list.innerHTML = html;
 }
 
 function mirrorToLocalStorage() {
-  console.log('Saving items to localStorage');
+  console.info('Saving items to localstorage');
   localStorage.setItem('items', JSON.stringify(items));
 }
 
 function restoreFromLocalStorage() {
-  console.info('Restoring from local storage'); // pull the items from Local Storage
+  console.info('Restoring from LS'); // pull the items from LS
 
   var lsItems = JSON.parse(localStorage.getItem('items'));
 
@@ -181,7 +178,7 @@ function restoreFromLocalStorage() {
 
     // items = lsItems;
     // lsItems.forEach(item => items.push(item));
-    // items.push(lsItems[0]);
+    // items.push(lsItems[0], lsItems[1]);
     (_items = items).push.apply(_items, _toConsumableArray(lsItems));
 
     list.dispatchEvent(new CustomEvent('itemsUpdated'));
@@ -189,7 +186,7 @@ function restoreFromLocalStorage() {
 }
 
 function deleteItem(id) {
-  console.log('deleting', id); // update our items array without this one
+  console.log('DELETIENG ITEM', id); // update our items array without this one
 
   items = items.filter(function (item) {
     return item.id !== id;
@@ -199,6 +196,7 @@ function deleteItem(id) {
 }
 
 function markAsComplete(id) {
+  console.log('Marking as complete', id);
   var itemRef = items.find(function (item) {
     return item.id === id;
   });
@@ -208,15 +206,17 @@ function markAsComplete(id) {
 
 shoppingForm.addEventListener('submit', handleSubmit);
 list.addEventListener('itemsUpdated', displayItems);
-list.addEventListener('itemsUpdated', mirrorToLocalStorage); // event delegation.  We listen for a click on the list ul but then delegate the click over to the button if that was what was clicked.
+list.addEventListener('itemsUpdated', mirrorToLocalStorage); // Event Delegation: We listen or the click on the list <ul> but then delegate the click over to the button if that is what was clicked
 
 list.addEventListener('click', function (e) {
+  var id = parseInt(e.target.value);
+
   if (e.target.matches('button')) {
-    deleteItem(parseInt(e.target.value));
+    deleteItem(id);
   }
 
   if (e.target.matches('input[type="checkbox"]')) {
-    markAsComplete(parseInt(e.target.value));
+    markAsComplete(id);
   }
 });
 restoreFromLocalStorage();
@@ -424,5 +424,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","shopping.js"], null)
-//# sourceMappingURL=/shopping.3c459b95.js.map
+},{}]},{},["../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","shopping-FINISHED.js"], null)
+//# sourceMappingURL=/shopping-FINISHED.7c5601cb.js.map
