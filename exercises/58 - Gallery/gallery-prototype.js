@@ -3,15 +3,15 @@ function Gallery(gallery) {
                 throw new Error('No Gallery Found!');
         }
         this.gallery = gallery;
+
         // select the elements we need
         this.images = Array.from(gallery.querySelectorAll('img'));
         this.modal = document.querySelector('.modal');
         this.prevButton = this.modal.querySelector('.prev');
         this.nextButton = this.modal.querySelector('.next');
+
         // Bind our methods to the instance when we need them.
-
         this.showNextImage = this.showNextImage.bind(this);
-
         this.showPrevImage = this.showPrevImage.bind(this);
         this.handleKeyUps = this.handleKeyUps.bind(this);
         this.handleClickOutside = this.handleClickOutside.bind(this);
