@@ -117,79 +117,78 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
+})({"src/index-prototype.js":[function(require,module,exports) {
+function Slider(slider) {
+  var _this = this;
 
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
+  if (!(slider instanceof Element)) {
+    throw new Error('No slider passed in');
+  } // select the elements needed for the slider
+
+
+  this.slides = slider.querySelector('.slides');
+  this.slider = slider;
+  var prevButton = slider.querySelector('.goToPrev');
+  var nextButton = slider.querySelector('.goToNext'); // when this slider is created, run the start slider function
+
+  this.startSlider();
+  this.applyClasses(); // Event listeners
+
+  prevButton.addEventListener('click', function () {
+    return _this.move('back');
+  });
+  nextButton.addEventListener('click', function () {
+    return _this.move();
+  });
+}
+
+Slider.prototype.startSlider = function () {
+  this.current = this.slider.querySelector('.current') || this.slides.firstElementChild;
+  this.prev = this.current.previousElementSibling || this.slides.lastElementChild;
+  this.next = this.current.nextElementSibling || this.slides.firstElementChild;
+};
+
+Slider.prototype.applyClasses = function () {
+  this.current.classList.add('current');
+  this.prev.classList.add('prev');
+  this.next.classList.add('next');
+};
+
+Slider.prototype.move = function (direction) {
+  var _this$prev$classList, _this$current$classLi, _this$next$classList;
+
+  // first strip all the classes off the current slides
+  var classesToRemove = ['prev', 'current', 'next'];
+
+  (_this$prev$classList = this.prev.classList).remove.apply(_this$prev$classList, classesToRemove);
+
+  (_this$current$classLi = this.current.classList).remove.apply(_this$current$classLi, classesToRemove);
+
+  (_this$next$classList = this.next.classList).remove.apply(_this$next$classList, classesToRemove);
+
+  if (direction === 'back') {
+    // make an new array of the new values, and destructure them over and into the prev, current and next variables
+    var _ref = [// get the prev slide, if there is none, get the last slide from the entire slider for wrapping
+    this.prev.previousElementSibling || this.slides.lastElementChild, this.prev, this.current];
+    this.prev = _ref[0];
+    this.current = _ref[1];
+    this.next = _ref[2];
+  } else {
+    var _ref2 = [this.current, this.next, // get the next slide, or if it's at the end, loop around and grab the first slide
+    this.next.nextElementSibling || this.slides.firstElementChild];
+    this.prev = _ref2[0];
+    this.current = _ref2[1];
+    this.next = _ref2[2];
   }
 
-  return bundleURL;
-}
+  this.applyClasses();
+};
 
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
-
-    if (matches) {
-      return getBaseURL(matches[0]);
-    }
-  }
-
-  return '/';
-}
-
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
-}
-
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
-
-function updateLink(link) {
-  var newLink = link.cloneNode();
-
-  newLink.onload = function () {
-    link.remove();
-  };
-
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-
-var cssTimeout = null;
-
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
-  }
-
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
-      }
-    }
-
-    cssTimeout = null;
-  }, 50);
-}
-
-module.exports = reloadCSS;
-},{"./bundle-url":"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"../../base.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+var mySlider = new Slider(document.querySelector('.slider'));
+var dogSlider = new Slider(document.querySelector('.dog-slider'));
+console.log(mySlider);
+console.log(dogSlider);
+},{}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -393,5 +392,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel/src/builtins/hmr-runtime.js"], null)
-//# sourceMappingURL=/base.4ae8e06d.js.map
+},{}]},{},["node_modules/parcel/src/builtins/hmr-runtime.js","src/index-prototype.js"], null)
+//# sourceMappingURL=/index-prototype.5edbb338.js.map
