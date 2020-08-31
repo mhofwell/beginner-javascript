@@ -9,6 +9,70 @@
 </head>
 
 <body>
+  <button>'abc'</button>
+  <div class='wrapper'>
+    <p>
+      I am amazing
+    </p>
+  </div>
+
+  <script>
+    const person = {
+      name: 'Wes Bos',
+      sayHi() {
+        console.log(`Hey ${this.name}`);
+        return `hey ${this.name}`;
+      },
+    };
+
+    const sayHi = person.sayHi.bind(person);
+
+    // QS Example, making short form selectors
+    // const $ = document.querySelector;
+    // by calling bind against querySelector, we say when the $ function is run, use 'document' as the 'this' value.
+
+    const lookFor = document.querySelector.bind(document);
+
+    const wrapper = document.querySelector('.wrapper');
+    const p = wrapper.querySelector('p');
+    console.log(p);
+
+    console.log(lookFor('p'));
+
+    const bill = {
+      total: 1000,
+      calculate(taxRate) {
+        console.log(this);
+        return this.total + this.total * taxRate;
+      },
+      describe(meal, drink, taxRate) {
+        console.log(`${meal} ${drink} ${this.calculate(taxRate)}`);
+      },
+    };
+
+    const total = bill.calculate(0.13);
+    console.log(total);
+
+    // const calc = bill.calculate.bind(bill);
+    // console.log(calc(0.13));
+
+    const calc = bill.calculate.bind({ total: 500 }, 0.06);
+    console.log(calc());
+
+    const total2 = bill.calculate.call({ total: 500 }, 0);
+
+    console.log('total2');
+
+    const total3 = bill.calculate.apply({ total: 500 }, [0.06]);
+
+    const total4 = bill.describe.call(bill, 'apples', 'coke', 0.13);
+
+    console.log(total4);
+
+    const total5 = bill.describe.apply(bill, ['apples', 'coke', 0.13]);
+
+    console.log(total5);
+  </script>
 
 </body>
 
