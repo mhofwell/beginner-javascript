@@ -4,13 +4,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Promises</title>
+  <title>Promises!!</title>
   <link rel="stylesheet" href="../base.css">
 </head>
 
 <body>
   <script>
+    function makePizza(toppings = []) {
+      return new Promise(function (resolve, reject) {
+        const amtTime = 500 + toppings.length * 200;
+        // wait 1 second for the pizza to cook
+        setTimeout(function () {
+          // when you are ready you can resolve this promise
+          resolve(`Here is your pizza!! ${toppings.join(' ')}`);
+        }, amtTime);
+        // if something went wrong we can reject the promise
+      });
+    }
 
+    makePizza(['bananas', 'eggs'])
+      .then(function (pizza) {
+        // console.log(`making your shit ${pizza}`);
+        return makePizza(['ham', 'cheese']);
+      })
+      .then(function (pizza) {
+        // console.log(`making your shit ${pizza}`);
+        return makePizza(['asdf', 'asdfsadf', 'abc', 'abc']);
+      })
+      .then(function (pizza) {
+        // console.log(`making your shit ${pizza}`);
+      });
+
+    // Run them concurrently
+
+    const pizzaPromise1 = makePizza(['ham', 'cheese']);
+    const pizzaPromise2 = makePizza(['asdf', 'asdfsadf', 'abc', 'abc']);
+    const pizzaPromise3 = makePizza(['bananas', 'eggs']);
+
+    const dinnerPromise = Promise.all([pizzaPromise1, pizzaPromise2, pizzaPromise3]);
+
+    dinnerPromise.then(function ([ham, jibber, bana]) {
+      // console.log(ham, jibber, bana);
+    });
+
+    const firstPizza = Promise.race([pizzaPromise1, pizzaPromise2, pizzaPromise3]);
+
+    firstPizza.then(pizza => console.log(pizza));
   </script>
 </body>
 
