@@ -10,7 +10,66 @@
 
 <body>
   <script>
+    function wait(ms = 0) {
+      return new Promise(resolve => {
+        setTimeout(resolve, ms);
+        console.log('yo mamma');
+      });
+    }
 
+    function makePizza(toppings = []) {
+      return new Promise(function (resolve, reject) {
+        // reject if people try with pineapple
+        if (toppings.includes('pineapple')) {
+          reject('Serious?');
+        }
+        const amtTime = 500 + toppings.length * 200;
+        // wait 1 second for the pizza to cook
+        setTimeout(function () {
+          // when you are ready you can resolve this promise
+          resolve(`Here is your pizza!! ${toppings}.join(' ')`);
+        }, amtTime);
+        // if something went wrong we can reject the promise
+      });
+    }
+
+    async function go() {
+      console.log('starting');
+      await wait(2000);
+      console.log('finishing');
+      await wait(200);
+      console.log('ending');
+    }
+
+    // go();
+
+    async function makeDinner() {
+      const pizza1 = await makePizza(['pep']);
+      console.log(pizza1);
+    }
+
+    makeDinner();
+
+    // // function declaration
+    // async function fd() { }
+
+    // // arrow function
+
+    // const arrowFn = (async = () => { });
+
+    // // callback function
+    // window.addEventListener('click', async function () { });
+
+    // //
+    // const person = {
+    //   // method
+    //   async sayHi() { },
+
+    //   // method shorthand
+    //   async sayHello() { },
+    //   // function property
+    //   sayHey: async () => { },
+    // };
   </script>
 </body>
 
