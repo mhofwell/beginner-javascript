@@ -46,45 +46,66 @@
 
     const go = document.querySelector('.go');
 
-    function animate(e) {
+    async function animate2(e) {
       const el = e.currentTarget;
       // 1. Change the text to GO when clicked.
       el.textContent = 'GO';
       // 2. Make it a circle after 2 seconds
-      wait(200)
-        .then(() => {
-          el.classList.add('circle');
-          return wait(500);
-        })
-        .then(() => {
-          // 3. Make it red after 0.5s
-          el.classList.add('red');
-          return wait(500);
-        })
-        .then(() => {
-          // 4. make it square after 0.25s
-          el.classList.remove('circle');
-          return wait(250);
-        })
-        .then(() => {
-          // 5. make it purple
-          el.classList.remove('red');
-          el.classList.add('purple');
-          return wait(250);
-        })
-        .then(() => {
-          // 6. fade out after 0.5s
-          el.classList.add('.fadeOut');
-          return wait(500);
-        })
-        .then(() => {
-          // 4. make it square after 0.25s
-          console.log('You have reacted the 7th layer of callback hell');
-          el.classList.remove('invisible', 'purple');
-        });
+      await wait(200);
+      el.classList.add('circle');
+      await wait(500);
+      el.classList.add('red');
+      await wait(500);
+      el.classList.remove('circle');
+      await wait(250);
+      el.classList.remove('red');
+      el.classList.add('purple');
+      await wait(250);
+      el.classList.add('.fadeOut');
+      await wait(500);
+      console.log('You have reacted the 7th layer of callback hell');
+      el.classList.remove('invisible', 'purple');
     }
 
-    go.addEventListener('click', animate);
+    go.addEventListener('click', animate2);
+
+    // function animate(e) {
+    //   const el = e.currentTarget;
+    //   // 1. Change the text to GO when clicked.
+    //   el.textContent = 'GO';
+    //   // 2. Make it a circle after 2 seconds
+    //   wait(200)
+    //     .then(() => {
+    //       el.classList.add('circle');
+    //       return wait(500);
+    //     })
+    //     .then(() => {
+    //       // 3. Make it red after 0.5s
+    //       el.classList.add('red');
+    //       return wait(500);
+    //     })
+    //     .then(() => {
+    //       // 4. make it square after 0.25s
+    //       el.classList.remove('circle');
+    //       return wait(250);
+    //     })
+    //     .then(() => {
+    //       // 5. make it purple
+    //       el.classList.remove('red');
+    //       el.classList.add('purple');
+    //       return wait(250);
+    //     })
+    //     .then(() => {
+    //       // 6. fade out after 0.5s
+    //       el.classList.add('.fadeOut');
+    //       return wait(500);
+    //     })
+    //     .then(() => {
+    //       // 4. make it square after 0.25s
+    //       console.log('You have reacted the 7th layer of callback hell');
+    //       el.classList.remove('invisible', 'purple');
+    //     });
+    // }
 
     // go.addEventListener('clickXXXX', function go(e) {
     //   const el = e.currentTarget;

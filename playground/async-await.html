@@ -27,7 +27,7 @@
         // wait 1 second for the pizza to cook
         setTimeout(function () {
           // when you are ready you can resolve this promise
-          resolve(`Here is your pizza!! ${toppings}.join(' ')`);
+          resolve(`Here is your pizza!! ${toppings}`);
         }, amtTime);
         // if something went wrong we can reject the promise
       });
@@ -43,9 +43,18 @@
 
     // go();
 
+    // async function makeDinner() {
+    //   const pizza1 = await makePizza(['pep']);
+    //   console.log(pizza1);
+    //   const pizza2 = await makePizza(['mush']);
+    //   console.log(pizza2);
+    // }
+
     async function makeDinner() {
-      const pizza1 = await makePizza(['pep']);
-      console.log(pizza1);
+      const pizzaPromise1 = makePizza(['pep']); // will return a promise
+      const pizzaPromise2 = makePizza(['mush']); // will return a promise
+      const [pep, mush] = await Promise.all([pizzaPromise1, pizzaPromise2]);
+      console.log(pep, mush);
     }
 
     makeDinner();
