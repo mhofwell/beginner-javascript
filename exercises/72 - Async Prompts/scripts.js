@@ -95,11 +95,12 @@ async function asyncMap(array, callback) {
 }
 
 async function go() {
-        const answers = await asyncMap(question, ask);
+        const answers = await asyncMap(questions, ask);
         console.log(answers);
 }
 
 go();
+
 // async function askMany() {
 //         for (const question of questions) {
 //                 const answer = await ask(question);
