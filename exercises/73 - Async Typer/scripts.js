@@ -47,3 +47,5 @@ async function draw(el) {
 }
 
 document.querySelectorAll('[data-type]').forEach(draw);
+
+// awesome
