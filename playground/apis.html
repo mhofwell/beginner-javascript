@@ -19,20 +19,20 @@
 
     async function displayUser(un) {
       userEl.textContent = '...Loading';
-      const response = await fetch(`${usersEndpoint}/${un}`);
+      const response = await fetch(`${usersEndpoint}/${un}`).catch(handleError);
       const data = await response.json();
       console.log(data);
       console.log(data.name);
       console.log(data.blog);
       userEl.textContent = `${data.name} - ${data.blog}`;
     }
-
     function handleError(err) {
       console.log('error!');
       console.log(err);
+      userEl.textContent = `Damn son, this happened ${err}`;
     }
 
-    displayUser('wesbos');
+    displayUser('wesbos').catch(handleError);
   </script>
 </body>
 
