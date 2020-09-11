@@ -15,7 +15,7 @@ export { handleButtonClick };
 
 // use async await to load the module only when you need.
 
-// export async function handleButtonClick(e) {
-//         const { localCurrency, default: currencies } = await import('./currencies.js');
-//         console.log(localCurrency, currencies);
-// }
+export async function handleButtonClick(e) {
+        const { localCurrency, default: currencies } = await import('./currencies.js');
+        console.log(localCurrency, currencies);
+}
