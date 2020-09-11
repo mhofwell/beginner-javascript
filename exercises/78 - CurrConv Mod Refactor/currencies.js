@@ -33,8 +33,4 @@ const currencies = {
         EUR: 'Euro',
 };
 
-const localCurrency = 'CAD';
-
-export { localCurrency };
-
 export default currencies;
