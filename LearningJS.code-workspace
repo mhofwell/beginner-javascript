@@ -7,5 +7,7 @@
 			"path": "../node-js"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "node-js"
+	}
 }
