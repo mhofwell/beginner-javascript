@@ -1,7 +1,3 @@
-let str = '';
+const array = process.argv.splice(0, 2).forEach(item => Number(item));
 
-for (let i = 0; i < 9; i++) {
-        str += i;
-}
-
-console.log(str);
+console.log(array);
